@@ -69,4 +69,6 @@ public interface UserService extends IService<User> {
     Result banUserPost(Long id);
 
     Result unlockUserPost(Long id);
+
+    Result selectAllUser();
 }

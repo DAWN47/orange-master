@@ -275,7 +275,13 @@ public class AdminController {
         return userService.adminToUser(id);
     }
 
-
+    /**
+     * @param userVo:
+     * @return Result
+     * @author DAWN
+     * @description TODO 禁言用户
+     * @date 2024/2/22 21:43
+     */
     @PreAuthorize("hasAuthority('/admin/ban/user/post')")
     @PostMapping("/ban/user/post")
     public Result banUserPost(@RequestBody UserVo userVo){
@@ -286,6 +292,13 @@ public class AdminController {
         return userService.banUserPost(id);
     }
 
+    /**
+     * @param userVo:
+     * @return Result
+     * @author DAWN
+     * @description TODO 解除用户禁言
+     * @date 2024/2/22 21:44
+     */
     @PreAuthorize("hasAuthority('/admin/unlock/user/post')")
     @PostMapping("/unlock/user/post")
     public Result unlockUserPost(@RequestBody UserVo userVo){
@@ -294,6 +307,19 @@ public class AdminController {
             return Result.fail("用户解除禁言失败");
         }
         return userService.unlockUserPost(id);
+    }
+
+    /**
+     * @param :
+     * @return Result
+     * @author DAWN
+     * @description TODO 查询所有用户
+     * @date 2024/2/22 21:44
+     */
+    @PreAuthorize("hasAuthority('/admin/select/all/user')")
+    @PostMapping("/select/all/user")
+    public Result selectAllUser(){
+        return userService.selectAllUser();
     }
 
 }

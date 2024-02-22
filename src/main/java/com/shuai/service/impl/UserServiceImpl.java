@@ -472,4 +472,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return Result.success("用户解除禁言成功");
     }
 
+    @Override
+    public Result selectAllUser() {
+        List<User> users = userMapper.selectList(null);
+        return Result.success("查询成功",users);
+    }
+
 }
