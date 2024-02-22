@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shuai.mapper.ReviewLikeMapper">
+
+    <delete id="deleteByGoodId" >
+        DELETE FROM review_like
+            WHERE review_like.review_id
+                      IN (SELECT r.id FROM `review` r WHERE r.good_id = #{goodId})
+    </delete>
+
+    <delete id="deleteByReviewId" >
+        DELETE FROM review_like
+        WHERE review_like.review_id
+                  IN (SELECT r.id FROM `review` r WHERE r.parent_id = #{reviewId} or r.id = #{reviewId})
+    </delete>
+
+</mapper>

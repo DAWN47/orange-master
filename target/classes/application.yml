@@ -1,0 +1,88 @@
+server:
+  port: 5901
+
+# 配置项目名称
+spring:
+  application:
+    name: orange
+  # 配置 mysql数据库
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/orange
+      username: root
+      password: 123456
+
+  # redis相关配置
+  redis:
+    # 配置主机
+    host: 127.0.0.1
+    # 配置使用的数据库
+    database: 0
+    # 配置指定端口
+    port: 6379
+
+project:
+  # 分页查询
+  pageSize: 5
+  # MD5加密的盐
+  salt: shuai
+  # 搜索记录保存条数
+  searchSize: 10
+
+# 设置 Mp（MyBatis-Plus）相关的配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      table-prefix:
+      id-type: auto # 自增策略
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+
+  # mybatis-plus开启日志
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+# 配置 七牛云 密钥
+qiniu:
+  accessKey: ur0mNrwWO_MNZ-AWLucpcjQAO0J34Osyx4q8Z_Mb
+  secretKey: bQis5IS2t9XTvgl9Ukc8c4vucSS3Srr0hCi_vZ0-
+  # 桶：就是七牛云上的空间  # 下面需要重新配置
+  bucket: shuai-orange3
+
+
+# 微信小程序配置
+weixin:
+  # 密钥 付：
+  appid: wx3cb31583481cd5c8
+  secret: 818a8bcdc4d697f029e6972b8fba4504
+  # 密钥 杜：
+#  appid: wx5df81eb4d30427f5
+#  secret: 6a7af2de711921bf41095dbf192adff2
+
+# 支付宝支付配置
+alipay:
+  # appId
+  appId: 9021000123607335
+  # 应用私钥
+  appPrivateKey: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCd7LwS39kuJrksZEwyqxdS4AxnRuDm34fx5DQAkX75X7YbsTP5itktQHIitHd977v0aR7NcS8C0299oEqdBVt9OzgvSXNcDsB8WonjnmwIzyT4roJWl9VMfcgQq9lxZrVS96Ze4jzdQnn90ydeOoHDFhC472BHEmVsoJ05ryNEGtfMvE/wFZruoAkTTK3b+GX+FxZToeILc7ip2W0pU6yD2I9rf1x+vNaDQCJUzlD2lUPhWQk1hRc1gV3K0fJ77r+kb1+tGQNwY4KG9ZVR1CZdganaZT88LxU9nqfd6p7FrTfWKzip0d/UbvdvOf3+ST0npCi+THL23EW3qt2d+NbJAgMBAAECggEAZnaHnBNinMABGt1EVweMzXeSdJuXJhRX5siyOMAtyuyfgh4Z48mDmQmcRAolES+vGifuFUtfPg0i5DZQ0sn8DyeSD5QvZcYoe0Ze+rD51UlY6oSHClneyY8+dBqbrSj/coI9johpBwGvltEeVNPPB11UojillddIuQ8Ik7mfPvrKf5nXwc2VsxOiIVopFD3zApbU4NdQRuI2F04+klUAPrMIaNh9NvP/2hdrJxxFLFEjgzjVPDx9s0xokCWRGFSKoKqhWEy916XY7ejXFU/zhUziM1gA7+UbtuDGuy1w64i/TshAIYJitPCvMetDoavSsmZotTvMgKJNh8J9Ir4yAQKBgQDQQyZaosXeSj6LVD1po4VMcvcUX3MHtOb8mxqC4anzy9Dd2CDW+3m8OhGWZ2YPyEfZCaosjVbpiJsnL5C0qD/ib+APrEZURNYyfqQQDiqbrSTv373jj5UKqh7PjdnT0tF/40wU77+HWxP21HDA+qUpmJ552DElNVmcfOJx6hH4iQKBgQDCH8XA1DfO5He2OakTt2xFXSQXwA5PoqcTHiNnrC2/tFsYgoMk6pLT+i87QTkNQANUVePNz1JYIjP+YhhM33SXZU6DYg95EraLPwEogr7U2T1Fp5S18/ssW4qZm+S4wr53M1MHnL+ak+jn8Nje0rJ1EPUJJKIRxUAVs5pvtHvcQQKBgBsNbfD+DdfXKxKsKaIMRKduk5vI3kdU/2A2wZXYvFvX0NTQW0uxtNl3bYts+Pv51yNhNwK8hVqmjQjlC9X7uPiv8Zn3ldcibfR3MNaJEI3SSucB2Ee0Afc1q/ToBzCVxPLo0pwxnF53vTsl01Ot+0BQ+9z18URVDsPeEQgdEKKJAoGBAIPymLYDCZQFUyF3e+c868kSEDBciN20Tx/9gk87hzUg4DJ+s6lqEDcpfOUn5iGNezXd06PW4b+qL/EeuCm4UUV+xKklBCNlhtKLFrx0ckW3C6DG0ZwDpJx39HOItSSoqlHXfv5TmyD0nIDbAm4ihM5xojx+u/KcQnz9wWFgKjiBAoGAKC+KFN3Q8JIwl11scOilkduD0Tbx9yX/3kXnh9Koyh73nL1QoR2hi18ioFTXs5c+9XHQrYzZsWJtw+iVii7EzJWYxUzDEZwnvh3L9NAYuGts20W05Bwvp+lt37iObbmFT/2h36nTfQYUsKkhZ1SErxA44Kt9Lz5wSnT6OzkATcQ=
+  # 支付宝公钥
+  alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhgvXt2FrgtBv3ytvmYR+b+y4pOICZomnjpdrzbE1eWbc2mUgnb/XLyK6baku503YYH3a0pdRCSxYK8VmkylpKiiHhrc+p+E4dsBLPY8+Lv2JddBHApNCkjiCyt/E4A7kuKlSjUByxmj7p7RpZ4dvhV0zAfHM+QR4k6ZTPvGbr5WfwNeEviRHPEzJSCWQk0q0gGk+ATyvmcPeXhWWdieFL3xuTmlreFXp6VoHeu79wJBJnhBXKu9WYUbnWYWcEntsCltuM5VLUb9rv5j5sQfWhyP5rUxFNZJI6zJAxYEqQmhF0/vqgryWcU1DC/+YGtumiwp6k5mGA0RL7XuxZKPohwIDAQAB
+  # 回调地址
+  notifyUrl: http://jq3bsv.natappfree.cc/alipay/notify
+
+# 微信支付配置
+wechat:
+  appid: wxffb3637a228223b8
+  secret: 84311df9199ecacdf4f12d27b6b9522d
+  mchid : 1561414331
+  mchSerialNo: 4B3B3DC35414AD50B1B755BAF8DE9CC7CF407606
+  privateKeyFilePath: D:\pay\apiclient_key.pem
+  apiV3Key: CZBK51236435wxpay435434323FFDuv3
+  weChatPayCertFilePath: D:\pay\wechatpay_166D96F876F45C7D07CE98952A96EC980368ACFC.pem
+  notifyUrl: https://58869fb.r2.cpolar.top/notify/paySuccess
+  refundNotifyUrl: https://58869fb.r2.cpolar.top/notify/refundSuccess

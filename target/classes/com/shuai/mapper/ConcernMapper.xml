@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shuai.mapper.ConcernMapper">
+
+    <select id="getMyConcern" resultType="com.shuai.pojo.bo.UserBo">
+        SELECT concerned_id AS other_id,nickname,avatar,sex,`description`
+            FROM concern c,`user` u
+            WHERE user_id = #{userId}
+                AND concerned_id = u.id
+                AND deleted=0
+    </select>
+
+    <select id="getMyFans" resultType="com.shuai.pojo.bo.UserBo">
+        SELECT user_id AS other_id,nickname,avatar,sex,`description`
+            FROM concern c,`user` u
+            WHERE concerned_id = #{userId}
+                AND user_id = u.id
+                AND deleted=0
+    </select>
+
+
+
+</mapper>
